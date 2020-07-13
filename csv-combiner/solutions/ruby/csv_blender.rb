@@ -1,5 +1,4 @@
 require_relative('csv_file')
-require 'pry'
 
 class CsvBlender
 

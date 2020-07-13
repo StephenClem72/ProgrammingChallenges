@@ -1,5 +1,4 @@
 require_relative('csv_blender')
-require 'pry'
 
 class CsvCombiner
   class << self
