@@ -40,7 +40,7 @@ func newFileName() string {
   fmt.Println("What is the name of your combined CSV? (press enter to use default name)")
   var csvName string
   fmt.Scan(&csvName)
-  if len(csvName) > 0 {
+  if len(csvName) == 0 {
     csvName = "golang_combiner.csv"
   }
   return csvName
