@@ -12,7 +12,9 @@ import (
 // example [[firstname, lastname],[jon, doe],[tom, cruise]]
 func Write(csvdata [][]string) {
   // create new file
-  file, err := os.Create(newFileName())
+  combinedFileName := newFileName()
+
+  file, err := os.Create(combinedFileName)
   error.Check("Cannot create file::", err)
   defer file.Close()
   
@@ -27,13 +29,19 @@ func Write(csvdata [][]string) {
   }
 
   // get absolute path of file for 'Done!' message.
-  abs, err := filepath.Abs(newFileName())
+  abs, err := filepath.Abs(combinedFileName)
   error.Check("Unable to parse Absolute path::", err)
 
   fmt.Println("Done! You can view your CSV here: ", abs)
 }
 
-// this will always write to a file in your current directory with this name
+// this will always write to a file in your current directory with the file name of your input
 func newFileName() string {
-  return "golang_combiner.csv"
+  fmt.Println("What is the name of your combined CSV? (press enter to use default name)")
+  var csvName string
+  fmt.Scan(&csvName)
+  if len(csvName) > 0 {
+    csvName = "golang_combiner.csv"
+  }
+  return csvName
 }
